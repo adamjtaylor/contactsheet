@@ -1,15 +1,15 @@
-from matplotlib import image
 from tifffile import TiffFile
 from matplotlib.image import imsave
-import matplotlib.pyplot as plt
 from matplotlib.pyplot import imshow
+import matplotlib.pyplot as plt
 from skimage.util import montage
+import numpy as np
 import sys
 import os
 
 
 def pull_series(path, level):
-    with TiffFile(svs_path) as tif:
+    with TiffFile(path) as tif:
         images = []
         for series in tif.series:
             i = series.levels[-1].asarray()
