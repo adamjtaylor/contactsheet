@@ -38,7 +38,7 @@ def main():
     images = pull_series(path, -1)
     fig  = plot_rgb(images)
 
-    imsave(fig, output)
+    plt.savefig(fig, output)
 
 if __name__ == "__main__":
     main()  
