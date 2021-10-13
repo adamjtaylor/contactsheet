@@ -29,6 +29,12 @@ parser.add_argument('--dpi',
     default = 600,
     help='the output dpi'
     )
+parser.add_argument('--level',
+    dest = "level",
+    type=int,
+    default = -1,
+    help='the image pyramid level to extract'
+    )
 
 args = parser.parse_args()
 
@@ -60,7 +66,7 @@ def arrange_figs(images):
 
 def main():
 
-    images = pull_series(args.input, -1)
+    images = pull_series(args.input, args.level)
     figs = list(map(plot_fig, images))
 
     if len(figs) > 1:
