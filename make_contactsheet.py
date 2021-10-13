@@ -40,7 +40,7 @@ def main():
 
     fig
 
-    plt.savefig(output)
+    plt.savefig(output, dpi = 300, bbox_inches='tight')
 
 if __name__ == "__main__":
     main()  
