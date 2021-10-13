@@ -63,7 +63,10 @@ def main():
     images = pull_series(args.input, -1)
     figs = list(map(plot_fig, images))
 
-    fig = arrange_figs(figs)
+    if len(figs) > 1
+        fig = arrange_figs(figs)
+    else:
+        fig = figs[0]
 
     fig
 
