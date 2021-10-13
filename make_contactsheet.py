@@ -67,7 +67,7 @@ def main():
         fig = arrange_figs(figs)
     else:
         fig = imshow(figs[0])
-        fig.axis('off')
+        plt.axis('off')
         
 
     fig
