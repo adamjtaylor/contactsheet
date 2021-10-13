@@ -40,25 +40,33 @@ def pull_series(path, level):
             images.append(i)
     return images
 
-def plot_rgb(images):
-    fig, axs = plt.subplots(len(images))
-    for index, image in enumerate(images):
-        channel_index = np.argmin(image.shape)  
-        if image.shape[channel_index] == 3:
-            axs[index].imshow(image)
-            axs[index].axis('off')
-        else: 
-            image_rearrange = np.moveaxis(image, channel_index, 0)
-            image_montage = montage(image_rearrange,  rescale_intensity=True)
-            axs[index].imshow(image_montage, cmap = 'gray')
-            axs[index].axis('off')
+def plot_fig(image):
+    channel_index = np.argmin(image.shape)  
+    if image.shape[channel_index] == 3:
+        fig = imshow(image)
+        fig.axis('off')
+    else: 
+        image_rearrange = np.moveaxis(image, channel_index, 0)
+        image_montage = montage(image_rearrange,  rescale_intensity=True)
+        fig = imshow(image_montage, cmap = 'gray')
+        fig.axis('off')
 
-    return(fig)
+    return fig
+
+def arrange_figs(images):
+    figs, axs = plt.subplots(len(images))
+    for index, image in enumerate(images):
+        axs[index].imshow(image)
+        axs[index].axis('off')
+    return figs
+
 
 def main():
 
     images = pull_series(args.input, -1)
-    fig  = plot_rgb(images)
+    figs = list(map(plot_fig, images))
+
+    fig = arrange_figs(figs)
 
     fig
 
