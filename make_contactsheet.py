@@ -66,7 +66,7 @@ def main():
     if len(figs) > 1:
         fig = arrange_figs(figs)
     else:
-        fig = figs[0]
+        fig = imshow(figs[0]).axis('off')
 
     fig
 
