@@ -18,8 +18,8 @@ parser.add_argument(
     )
 parser.add_argument(
     '--output',
-    destination = "output"
-    type=str,
+    destination = "output",
+    type = str,
     default = "contactsheet.png"
     help='the output file name'
     )
