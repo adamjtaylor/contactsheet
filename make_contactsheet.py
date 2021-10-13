@@ -25,8 +25,8 @@ def plot_rgb(images):
             axs[index].axis('off')
         else: 
             image_rearrange = np.moveaxis(image, channel_index, 0)
-            montage = montage(image_rearrange,  rescale_intensity=True)
-            axs[index].imshow(montage, cmap = 'gray')
+            image_montage = montage(image_rearrange,  rescale_intensity=True)
+            axs[index].imshow(image_montage, cmap = 'gray')
             axs[index].axis('off')
 
     return(fig)
