@@ -19,7 +19,7 @@ def pull_series(path, level):
 def plot_rgb(images):
     fig, axs = plt.subplots(len(images))
     for index, image in enumerate(images):
-        channel_index = np.argmin(images[0].shape)  
+        channel_index = np.argmin(image.shape)  
         if channel_index == 3:
             axs[index].imshow(image)
             axs[index].axis('off')
