@@ -20,7 +20,7 @@ parser.add_argument(
     '--output',
     destination = "output",
     type = str,
-    default = "contactsheet.png"
+    default = "contactsheet.png",
     help='the output file name'
     )
 parser.add_argument('--dpi',
