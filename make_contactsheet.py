@@ -44,12 +44,12 @@ def plot_fig(image):
     channel_index = np.argmin(image.shape)  
     if image.shape[channel_index] == 3:
         fig = imshow(image)
-        fig.axis('off')
+        #fig.axis('off')
     else: 
         image_rearrange = np.moveaxis(image, channel_index, 0)
         image_montage = montage(image_rearrange,  rescale_intensity=True)
         fig = imshow(image_montage, cmap = 'gray')
-        fig.axis('off')
+        #fig.axis('off')
 
     return fig
 
@@ -57,7 +57,7 @@ def arrange_figs(images):
     figs, axs = plt.subplots(len(images))
     for index, image in enumerate(images):
         axs[index].imshow(image)
-        axs[index].axis('off')
+        #axs[index].axis('off')
     return figs
 
 
