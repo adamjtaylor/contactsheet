@@ -66,9 +66,12 @@ def main():
     if len(figs) > 1:
         fig = arrange_figs(figs)
     else:
-        fig = imshow(figs[0]).axis('off')
+        fig = imshow(figs[0])
+        fig.axis('off')
+        
 
     fig
+
 
     plt.savefig(args.output, dpi = args.dpi, bbox_inches='tight')
 
