@@ -6,6 +6,7 @@ from matplotlib.pyplot import imshow
 import matplotlib.pyplot as plt
 from skimage.util import montage
 import numpy as np
+import zarr
 import sys
 import os
 
@@ -42,8 +43,9 @@ def pull_series(path, level):
     with TiffFile(path) as tif:
         images = []
         for series in tif.series:
-            i = series.levels[-1].asarray()
-            images.append(i)
+            i = series.levels[-1]
+            z = zarr.open(i.aszarr())
+            images.append(z)
     return images
 
 
