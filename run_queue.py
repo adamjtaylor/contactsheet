@@ -53,14 +53,12 @@ with open(args.queue, 'r') as csvfile:
     datareader = csv.reader(csvfile)
     n = 1
     for row in datareader:
-        print(f'Processing file {str(n)} of {str(count)}: {row[0]}')
         if args.type == "uri":
             uri = row[0]
             output = uri
         elif args.type == "synid":
                 try:
                     uri = get_cloud_uri(row[0])
-                    n = n+1
                 except:
                     n = n+1
                     continue
@@ -72,6 +70,7 @@ with open(args.queue, 'r') as csvfile:
             profile = args.aws_profile
         elif scheme == "gs":
             profile = args.gs_profile
+        print(f'Processing file {str(n)} of {str(count)}: {row[0]}')
         os.system('python contactsheet-stream.py "' + uri + '" --profile ' + profile + ' --output ' + output)
         print("File " +str(n) + " complete")
         print("")
