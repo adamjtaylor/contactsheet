@@ -120,6 +120,7 @@ def plot_fig(image):
         else:
             return image
     else: 
+        print(f'Making image montage of {str(image.shape[channel_index])} channels')
         image_rearrange = np.moveaxis(image, channel_index, 0)
         image_montage = montage(image_rearrange, rescale_intensity=True)
         return image_montage
@@ -163,7 +164,9 @@ def main():
     
     
     images = pull_series(s3_file, args.level)
+    print(f'{str(len(images))} images found')
     figs = list(map(plot_fig, images))
+    print(f'{str(len(figs))} images generated')
 
     if len(figs) > 1:
         fig = arrange_figs(figs)
