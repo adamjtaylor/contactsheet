@@ -169,9 +169,11 @@ def main():
     print(f'{str(len(figs))} images generated')
 
     if len(figs) > 1:
+        print('Arranging figs')
         fig = arrange_figs(figs)
     else:
-        fig = imshow(figs)
+        print('Showing figs')
+        fig = imshow(figs[0])
         plt.axis('off')
         
 
