@@ -45,6 +45,13 @@ def get_cloud_uri(synid):
     cloud_uri = urlunsplit((scheme,bucketName,key, '', ''))
     return cloud_uri
 
+completed_ids = []
+x=r'outputs'
+for r,d,f in os.walk(x):
+    for i in f:
+        if re.match(r'syn[0-9]+', i):
+            completed_ids.append(re.search(r'syn[0-9]+',i).group())
+print(completed_ids)
 
 with open(args.queue, 'r') as csvfile:
     datareader = csv.reader(csvfile)
@@ -64,6 +71,9 @@ with open(args.queue, 'r') as csvfile:
                     continue
                 output = row[0]
                 print(output + ": " + uri)
+        if output in completed_ids:
+            print('Already generated')
+            continue
         parsed_uri = urlparse(uri)
         scheme = parsed_uri.scheme
         if scheme == "s3":
