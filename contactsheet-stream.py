@@ -115,7 +115,7 @@ def plot_fig(image):
     print(f'Shape: {image.shape}    channel_index: {channel_index}')
     if image.shape[channel_index] == 3:
         if channel_index == 0:
-            image = image.squeeze().permute(1,2,0)
+            image = np.moveaxis(image,channel_index, 2)
             print(f'Rearranged to Shape: {image.shape}    channel_index: {channel_index}')
         else:
             return image
