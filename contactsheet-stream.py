@@ -113,7 +113,10 @@ def pull_series(path, level):
 def plot_fig(image):
     channel_index = np.argmin(image.shape)  
     if image.shape[channel_index] == 3:
-        return image
+        if channel_index == 0:
+            image = np.moveaxis(image, 0, -1)
+        else:
+            return image
     else: 
         image_rearrange = np.moveaxis(image, channel_index, 0)
         image_montage = montage(image_rearrange, rescale_intensity=True)
