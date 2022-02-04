@@ -55,7 +55,7 @@ def plot_fig(image):
         return image
     else: 
         image_rearrange = np.moveaxis(image, channel_index, 0)
-        image_montage = montage(image_rearrange,  rescale_intensity=True)
+        image_montage = montage(image_rearrange, rescale_intensity=True)
         return image_montage
 
 def arrange_figs(images):
