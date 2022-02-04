@@ -170,13 +170,13 @@ def main():
     fig
 
     if re.match(r'syn\d{8}', args.output):
-        output_path = "" + bucket + "/" + args.output + ".png"
+        output_path = "outputs/" + bucket + "/" + args.output + ".png"
     else:
         #basename = os.path.basename(key)
         basename = Path(key)
         extensions = "".join(basename.suffixes)
         output_path =str(basename).replace(extensions, ".json")
-        output_path = "outputs/headers/" + bucket + "/" + output_path
+        output_path = "outputs/" + bucket + "/" + output_path
 
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
