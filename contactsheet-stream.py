@@ -171,7 +171,7 @@ def main():
     if len(figs) > 1:
         fig = arrange_figs(figs)
     else:
-        fig = imshow(figs[0])
+        fig = imshow(figs)
         plt.axis('off')
         
 
