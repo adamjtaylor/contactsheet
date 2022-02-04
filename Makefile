@@ -6,7 +6,7 @@ pull:
 release1:
 	 python run_queue.py --type synid --aws_profile sandbox-developer --gs_profile htan-dcc-gcs for_contactsheet.csv
 
-release1:
+release2:
 	 python run_queue.py --type synid --aws_profile sandbox-developer --gs_profile htan-dcc-gcs release2_ometiffs.csv
 
 push:
