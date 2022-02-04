@@ -13,6 +13,7 @@ import sys
 import os
 import io
 import boto3
+import re
 
 
 parser = argparse.ArgumentParser(description = 'Create a contact sheet of scenes and channels from a tiff')
