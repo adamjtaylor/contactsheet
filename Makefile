@@ -1,5 +1,8 @@
 NAME=contactsheet
 
+all: 
+	pull he push
+
 pull: 
 	aws s3 --profile service-catalog sync s3://htan-image-header-db/contactsheet outputs/
 

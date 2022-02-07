@@ -5,6 +5,7 @@ from matplotlib.image import imsave
 from matplotlib.pyplot import imshow
 import matplotlib.pyplot as plt
 from skimage.util import montage
+from skimage.transform import rescale
 import numpy as np
 from urllib.parse import urlparse
 
@@ -106,6 +107,10 @@ def pull_series(path, level):
         for series in tif.series:
             i = series.levels[-1]
             z = zarr.open(i.aszarr())
+            max_size = np.argmax(z.shape)
+            if max_size > 5000:
+                scale = 5000//max_size
+                z = rescale(z, scale)
             images.append(z)
     return images
 
