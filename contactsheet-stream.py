@@ -110,7 +110,12 @@ def pull_series(path, level):
             max_size = np.argmax(z.shape)
             if max_size > 5000:
                 scale = 5000//max_size
+                print('WARNING: Large image. Rescaling')
+                print(f'{z.shape}')
+                print(f'{max_size=}')
+                print(f'{scale=}')
                 z = rescale(z, scale)
+                print({z.shape})
             images.append(z)
     return images
 
