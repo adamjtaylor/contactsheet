@@ -117,7 +117,7 @@ def plot_fig(image):
     max_size = np.max(image.shape)
     print(f'{max_size=}')
     if max_size > 5000:
-        scale = 5000//max_size
+        scale = 5000/max_size
         print('WARNING: Large image. Rescaling')
         print(f'{image.shape}')
         print(f'{scale=}')
