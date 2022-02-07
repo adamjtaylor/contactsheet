@@ -114,7 +114,7 @@ def pull_series(path, level):
 def plot_fig(image):
     channel_index = np.argmin(image.shape)  
     print(f'Shape: {image.shape}    channel_index: {channel_index}')
-    max_size = np.argmax(image.shape)
+    max_size = np.max(image.shape)
     print(f'{max_size=}')
     if max_size > 5000:
         scale = 5000//max_size
