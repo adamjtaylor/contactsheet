@@ -107,15 +107,6 @@ def pull_series(path, level):
         for series in tif.series:
             i = series.levels[-1]
             z = zarr.open(i.aszarr())
-            max_size = np.argmax(z.shape)
-            if max_size > 5000:
-                scale = 5000//max_size
-                print('WARNING: Large image. Rescaling')
-                print(f'{z.shape}')
-                print(f'{max_size=}')
-                print(f'{scale=}')
-                z = rescale(z, scale)
-                print({z.shape})
             images.append(z)
     return images
 
@@ -123,6 +114,15 @@ def pull_series(path, level):
 def plot_fig(image):
     channel_index = np.argmin(image.shape)  
     print(f'Shape: {image.shape}    channel_index: {channel_index}')
+    max_size = np.argmax(image.shape)
+    print(f'{max_size=}')
+    if max_size > 5000:
+        scale = 5000//max_size
+        print('WARNING: Large image. Rescaling')
+        print(f'{image.shape}')
+        print(f'{scale=}')
+        image = rescale(image, scale)
+        print({image.shape})
     if image.shape[channel_index] == 3:
         if channel_index == 0:
             image = np.moveaxis(image,0, -1)
