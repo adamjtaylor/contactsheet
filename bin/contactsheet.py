@@ -54,7 +54,7 @@ def plot_fig(image):
     if image.shape[channel_index] == 3:
         return image
     else:
-        image_rearrange = np.moveaxis(image, channel_index, 0)
+        image_rearrange = np.moveaxis(np.log1p(image), channel_index, 0)
         image_montage = montage(image_rearrange, rescale_intensity=True)
         return image_montage
 
@@ -64,7 +64,7 @@ def arrange_figs(images, title):
         print(image.shape)
         axs[index].imshow(image) 
         axs[index].axis('off')
-    figs.suptitle(title)
+    figs.suptitle(title, fontsize='x-small')
     return figs
 
 
@@ -80,6 +80,7 @@ def main():
     else:
         print('Only one figure')
         fig = imshow(figs[0])
+        plt.title(title, fontdict={'fontsize':'x-small'})
         plt.axis('off')
 
 
