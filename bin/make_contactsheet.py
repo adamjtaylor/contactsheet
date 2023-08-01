@@ -6,7 +6,6 @@ from matplotlib.pyplot import imshow
 import matplotlib.pyplot as plt
 from skimage.util import montage
 import numpy as np
-import zarr
 import sys
 import os
 
@@ -21,7 +20,7 @@ parser.add_argument(
     '--output',
     dest = "output",
     type = str,
-    default = "contactsheet.png",
+    default = "contactsheet.jpg",
     help='the output file name'
     )
 parser.add_argument('--dpi',
@@ -44,39 +43,44 @@ def pull_series(path, level):
         images = []
         for series in tif.series:
             i = series.levels[-1]
-            z = zarr.open(i.aszarr())
-            images.append(z)
+            images.append(i.asarray())
     return images
 
 
 def plot_fig(image):
-    channel_index = np.argmin(image.shape)  
+    channel_index = np.argmin(image.shape)
+    print(image.shape)
     if image.shape[channel_index] == 3:
         return image
-    else: 
+    else:
         image_rearrange = np.moveaxis(image, channel_index, 0)
         image_montage = montage(image_rearrange, rescale_intensity=True)
         return image_montage
 
-def arrange_figs(images):
+def arrange_figs(images, title):
     figs, axs = plt.subplots(len(images))
     for index, image in enumerate(images):
-        axs[index].imshow(image)
+        print(image.shape)
+        axs[index].imshow(image) 
         axs[index].axis('off')
+    figs.suptitle(title)
     return figs
 
 
 def main():
-
     images = pull_series(args.input, args.level)
+    print(f'{str(len(images))} series extracted')
     figs = list(map(plot_fig, images))
+    title = args.input
 
     if len(figs) > 1:
-        fig = arrange_figs(figs)
+        print('Arranging figures')
+        fig = arrange_figs(figs, title)
     else:
+        print('Only one figure')
         fig = imshow(figs[0])
         plt.axis('off')
-        
+
 
     fig
 
@@ -84,4 +88,4 @@ def main():
     plt.savefig(args.output, dpi = args.dpi, bbox_inches='tight')
 
 if __name__ == "__main__":
-    main()  
+    main()
