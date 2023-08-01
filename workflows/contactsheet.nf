@@ -3,7 +3,7 @@ include { MAKE } from '../subworkflows/make.nf'
 include { COMBINE } from '../subworkflows/combine.nf'
 
 workflow CONTACTSHEET {
-    SAMPLESHEET_SPLIT ( params.input )
+    SAMPLESHEET_SPLIT ( params.samplesheet )
     MAKE( SAMPLESHEET_SPLIT.out.images )
     MAKE.out.contactsheets.set{contactsheets}
     COMBINE( contactsheets )
