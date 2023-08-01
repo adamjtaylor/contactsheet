@@ -10,6 +10,6 @@ process make_contactsheet {
   """
   script:
   """
-  python3 $projectDir/bin/make_contactsheet.py $image --output ${meta.id}.contactsheet.jpeg
+  contactsheet.py $image --output ${meta.id}.contactsheet.jpeg
   """
 }
