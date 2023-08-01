@@ -40,8 +40,6 @@ workflow SAMPLESHEET_SPLIT {
             .mix(other)
             .set{ images }
 
-        images.view()
-
     emit: 
     images
 }
